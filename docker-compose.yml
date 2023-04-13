@@ -1,5 +1,5 @@
 services:
-  node:
+  menumkr:
     image: node:18
     container_name: menumkr-node
     working_dir: /app
