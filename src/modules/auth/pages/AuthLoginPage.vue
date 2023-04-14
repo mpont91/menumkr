@@ -1,3 +1,3 @@
 <template>
-  <p>Login</p>
+  <p>{{ $t('auth.login.email') }}</p>
 </template>

@@ -1,5 +1,5 @@
-import enUS from './en-US'
+import en from 'src/i18n/en'
 
 export default {
-  'en-US': enUS,
+  en: en,
 }
