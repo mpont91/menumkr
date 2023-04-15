@@ -11,6 +11,21 @@ const api = axios.create({ baseURL: process.env.API })
 
 api.defaults.withCredentials = true
 
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response.status === 419) {
+      // Refresh our session token
+      await api.get(process.env.API + '/sanctum/csrf-cookie')
+
+      // Return a new request using the original request's configuration
+      return api(error.response.config)
+    }
+
+    return Promise.reject(error)
+  }
+)
+
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
