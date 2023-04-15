@@ -21,6 +21,8 @@
     </q-input>
     <div>
       <q-btn
+        square
+        size="medium"
         :label="$t('auth.login.action')"
         class="full-width"
         type="submit"
