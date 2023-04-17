@@ -1,43 +1,11 @@
-# Menu MKR (menumkr)
+# Menu MKR Application
 
-Menu MKR App
+## Setup the project
 
-## Install the dependencies
+Clone the project
 
-```bash
-yarn
-# or
-npm install
+Run the docker compose. Docker container will automatically install the dependencies and run as development.
+
 ```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-
-```bash
-quasar dev
+docker compose up
 ```
-
-### Lint the files
-
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-### Format the files
-
-```bash
-yarn format
-# or
-npm run format
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
