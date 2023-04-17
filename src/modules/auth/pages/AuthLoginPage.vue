@@ -34,17 +34,24 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import authLoginUserFactory from 'src/modules/auth/factories/auth-login-user-factory'
 import { useLoginService } from 'src/modules/auth/services/login-service'
 
+const router = useRouter()
 const isPasswordVisible = ref(false)
 const loginForm = ref({ ...authLoginUserFactory })
 
 const loginHandler = async () => {
-  await useLoginService({
-    email: loginForm.value.email,
-    password: loginForm.value.password,
-  })
+  try {
+    await useLoginService({
+      email: loginForm.value.email,
+      password: loginForm.value.password,
+    })
+    await router.push({ name: 'dashboard' })
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const visibilityPassword = () => {

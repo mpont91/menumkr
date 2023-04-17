@@ -2,7 +2,7 @@ import { useUserStore } from 'stores/user-store'
 import { useAuthLoginApi, useAuthUserApi } from 'src/api/auth-api'
 import { useAuthLogoutApi } from 'src/api/auth-api'
 
-export const useLoginService = async (email, password) => {
+export const useLoginService = async ({ email, password }) => {
   const userStore = useUserStore()
   await useAuthLoginApi({ email, password })
   userStore.setUser(await useAuthUserApi())

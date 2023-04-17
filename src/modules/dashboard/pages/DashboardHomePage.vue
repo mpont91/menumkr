@@ -4,9 +4,16 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import { useLogoutService } from 'src/modules/auth/services/login-service'
 
+const router = useRouter()
 const logout = async () => {
-  await useLogoutService()
+  try {
+    await useLogoutService()
+    await router.push({ name: 'guest' })
+  } catch (error) {
+    console.log(error)
+  }
 }
 </script>

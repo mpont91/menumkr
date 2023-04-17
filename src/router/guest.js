@@ -1,5 +1,6 @@
 export default {
   path: '/',
+  name: 'guest',
   component: () => import('layouts/TheGuestLayout.vue'),
   redirect: { name: 'guest_landing' },
   children: [

@@ -10,7 +10,7 @@ export const useUserStore = defineStore({
     user: ref(LocalStorage.getItem(LOCAL_STORAGE_USER) || {}),
   }),
   getters: {
-    isLoggedIn: (state) => state.user.id !== null,
+    isLoggedIn: (state) => JSON.stringify(state.user) !== '{}',
   },
   actions: {
     setUser(user) {
