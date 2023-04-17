@@ -26,6 +26,17 @@ api.interceptors.response.use(
   }
 )
 
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 401) {
+      window.location = '/auth/login'
+    } else {
+      return Promise.reject(error)
+    }
+  }
+)
+
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
