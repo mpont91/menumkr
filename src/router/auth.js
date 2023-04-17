@@ -2,6 +2,9 @@ export default {
   path: '/auth',
   name: 'auth',
   component: () => import('layouts/TheAuthLayout.vue'),
+  meta: {
+    requiresGuest: true,
+  },
   redirect: { name: 'auth_login' },
   children: [
     {
@@ -20,6 +23,11 @@ export default {
       name: 'auth_update_password',
       component: () =>
         import('src/modules/auth/pages/AuthUpdatePasswordPage.vue'),
+    },
+    {
+      path: 'register',
+      name: 'auth_register',
+      component: () => import('src/modules/auth/pages/AuthRegisterPage.vue'),
     },
   ],
 }
