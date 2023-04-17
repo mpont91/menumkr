@@ -37,12 +37,15 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import authLoginUserFactory from 'src/modules/auth/factories/auth-login-user-factory'
 import { useLoginService } from 'src/modules/auth/services/login-service'
+import { useLoaderService } from 'src/services/loader-service'
 
 const router = useRouter()
+const loaderService = useLoaderService()
 const isPasswordVisible = ref(false)
 const loginForm = ref({ ...authLoginUserFactory })
 
 const loginHandler = async () => {
+  loaderService.show()
   try {
     await useLoginService({
       email: loginForm.value.email,
@@ -51,6 +54,8 @@ const loginHandler = async () => {
     await router.push({ name: 'dashboard' })
   } catch (error) {
     console.log(error)
+  } finally {
+    loaderService.hide()
   }
 }
 
