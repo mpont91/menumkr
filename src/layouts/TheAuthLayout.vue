@@ -4,7 +4,7 @@
       <div class="window-height window-width row justify-center items-center">
         <q-card>
           <q-card-section>
-            <q-img :src="logo" width="300px" />
+            <q-img :src="logo" max-width="300px" />
           </q-card-section>
           <q-card-section>
             <router-view />
