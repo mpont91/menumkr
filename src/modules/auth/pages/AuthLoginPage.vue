@@ -35,10 +35,18 @@
 <script setup>
 import { ref } from 'vue'
 import authLoginUserFactory from 'src/modules/auth/factories/auth-login-user-factory'
+import { useAuthLoginApi } from 'src/api/auth-api'
 
 const isPasswordVisible = ref(false)
 const loginForm = ref({ ...authLoginUserFactory })
-const loginHandler = async () => {}
+
+const loginHandler = async () => {
+  await useAuthLoginApi({
+    email: loginForm.value.email,
+    password: loginForm.value.password,
+  })
+}
+
 const visibilityPassword = () => {
   isPasswordVisible.value = !isPasswordVisible.value
 }
