@@ -35,13 +35,13 @@
 <script setup>
 import { ref } from 'vue'
 import authLoginUserFactory from 'src/modules/auth/factories/auth-login-user-factory'
-import { useAuthLoginApi } from 'src/api/auth-api'
+import { useLoginService } from 'src/modules/auth/services/login-service'
 
 const isPasswordVisible = ref(false)
 const loginForm = ref({ ...authLoginUserFactory })
 
 const loginHandler = async () => {
-  await useAuthLoginApi({
+  await useLoginService({
     email: loginForm.value.email,
     password: loginForm.value.password,
   })
