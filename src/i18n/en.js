@@ -4,9 +4,19 @@ export default {
       email: 'Email',
       password: 'Password',
       action: 'Login',
-      invalid_credentials: 'Invalid credentials',
-      remember_me: 'Remember me',
       reset: 'Forgot your password?',
+    },
+    reset_password: {
+      email: 'Email',
+      action: 'Submit',
+      login: 'Login into your account',
+    },
+    register: {
+      email: 'Email',
+      password: 'Password',
+      password_confirm: 'Confirm password',
+      action: 'Sign up',
+      login: 'Do you already have an account?',
     },
   },
 }

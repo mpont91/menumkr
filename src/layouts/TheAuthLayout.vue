@@ -4,7 +4,9 @@
       <div class="window-height window-width row justify-center items-center">
         <q-card>
           <q-card-section>
-            <q-img :src="logo" width="300px" />
+            <router-link :to="{ name: 'guest' }">
+              <q-img :src="logo" width="300px" />
+            </router-link>
           </q-card-section>
           <q-card-section>
             <router-view />

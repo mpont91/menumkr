@@ -4,13 +4,20 @@
       v-model="loginForm.email"
       :label="$t('auth.login.email')"
       name="email"
-    />
+    >
+      <template #prepend>
+        <q-icon name="person" />
+      </template>
+    </q-input>
     <q-input
       v-model="loginForm.password"
       :label="$t('auth.login.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
     >
+      <template #prepend>
+        <q-icon name="lock" />
+      </template>
       <template #append>
         <q-icon
           :name="isPasswordVisible ? 'visibility' : 'visibility_off'"
@@ -24,18 +31,26 @@
         square
         size="medium"
         :label="$t('auth.login.action')"
-        class="full-width"
         type="submit"
         color="primary"
+        icon-right="login"
+        class="full-width"
       />
     </div>
   </q-form>
+  <q-btn
+    icon="lock_reset"
+    :label="$t('auth.login.reset')"
+    :to="{ name: 'auth_reset_password' }"
+    flat
+    class="full-width q-mt-lg"
+  />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import authLoginUserFactory from 'src/modules/auth/factories/auth-login-user-factory'
+import authLoginFactory from 'src/modules/auth/factories/auth-login-factory'
 import { useLoginService } from 'src/modules/auth/services/login-service'
 import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
@@ -44,7 +59,7 @@ const router = useRouter()
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 const isPasswordVisible = ref(false)
-const loginForm = ref({ ...authLoginUserFactory })
+const loginForm = ref({ ...authLoginFactory })
 
 const loginHandler = async () => {
   loaderService.show()
