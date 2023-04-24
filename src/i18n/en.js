@@ -1,4 +1,8 @@
 export default {
+  validation: {
+    email: 'The {attribute} must be a valid email address.',
+    required: 'The {attribute} field is required.',
+  },
   auth: {
     login: {
       email: 'Email',
