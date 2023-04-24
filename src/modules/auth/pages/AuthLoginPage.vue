@@ -4,6 +4,7 @@
       v-model="loginForm.email"
       :label="$t('auth.login.email')"
       name="email"
+      :rules="[ruleRequired, ruleEmail]"
     >
       <template #prepend>
         <q-icon name="person" />
@@ -14,6 +15,7 @@
       :label="$t('auth.login.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
+      :rules="[ruleRequired]"
     >
       <template #prepend>
         <q-icon name="lock" />
@@ -54,6 +56,7 @@ import authLoginFactory from 'src/modules/auth/factories/auth-login-factory'
 import { useLoginService } from 'src/modules/auth/services/login-service'
 import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
+import { ruleEmail, ruleRequired } from 'src/services/validation-service'
 
 const router = useRouter()
 const loaderService = useLoaderService()

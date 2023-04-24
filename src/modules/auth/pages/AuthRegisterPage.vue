@@ -4,6 +4,7 @@
       v-model="registerForm.email"
       :label="$t('auth.register.email')"
       name="email"
+      :rules="[ruleRequired, ruleEmail]"
     >
       <template #prepend>
         <q-icon name="person" />
@@ -14,6 +15,7 @@
       :label="$t('auth.register.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
+      :rules="[ruleRequired]"
     >
       <template #prepend>
         <q-icon name="lock" />
@@ -31,6 +33,7 @@
       :label="$t('auth.register.password_confirm')"
       :type="isPasswordConfirmVisible ? 'text' : 'password'"
       name="password-confirm"
+      :rules="[ruleRequired]"
     >
       <template #prepend>
         <q-icon name="lock" />
@@ -67,6 +70,7 @@
 <script setup>
 import { ref } from 'vue'
 import authRegisterFactory from 'src/modules/auth/factories/auth-register-factory'
+import { ruleEmail, ruleRequired } from 'src/services/validation-service'
 
 const isPasswordVisible = ref(false)
 const isPasswordConfirmVisible = ref(false)
