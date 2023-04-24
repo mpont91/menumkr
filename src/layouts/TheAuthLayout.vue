@@ -6,7 +6,7 @@
           <the-language-selector-component />
           <q-card-section>
             <router-link :to="{ name: 'guest' }">
-              <q-img :src="logo" width="300px" />
+              <q-img :src="logo" width="330px" />
             </router-link>
           </q-card-section>
           <q-card-section>
