@@ -2,9 +2,8 @@
   <q-btn-dropdown
     flat
     icon="translate"
-    :label="$t(`languages.${$i18n.locale}`)"
-    class="full-width"
     square
+    :label="label ? $t(`languages.${$i18n.locale}`) : null"
   >
     <q-list>
       <q-item
@@ -25,6 +24,12 @@
 </template>
 
 <script setup>
+defineProps({
+  label: {
+    type: Boolean,
+    default: false,
+  },
+})
 import { useI18n } from 'vue-i18n'
 import { useLocaleStore } from 'stores/locale-store'
 

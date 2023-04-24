@@ -3,7 +3,7 @@
     <q-page-container>
       <div class="window-height window-width row justify-center items-center">
         <q-card>
-          <the-language-selector-component />
+          <the-language-selector-component label class="full-width" />
           <q-card-section>
             <router-link :to="{ name: 'guest' }">
               <q-img :src="logo" width="330px" />
