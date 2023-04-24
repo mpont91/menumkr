@@ -3,6 +3,10 @@ export default {
     email: 'The {attribute} must be a valid email address.',
     required: 'The {attribute} field is required.',
   },
+  languages: {
+    es: 'Spanish',
+    en: 'English',
+  },
   auth: {
     login: {
       email: 'Email',

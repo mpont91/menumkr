@@ -3,6 +3,7 @@
     <q-page-container>
       <div class="window-height window-width row justify-center items-center">
         <q-card>
+          <the-language-selector-component />
           <q-card-section>
             <router-link :to="{ name: 'guest' }">
               <q-img :src="logo" width="300px" />
@@ -19,4 +20,5 @@
 
 <script setup>
 import logo from 'assets/logo/logo.png'
+import TheLanguageSelectorComponent from 'components/TheLanguageSelectorComponent.vue'
 </script>
