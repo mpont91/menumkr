@@ -1,4 +1,8 @@
 export default {
+  menu: {
+    auth_login: 'Login',
+    auth_register: 'Sign up',
+  },
   validation: {
     email: 'The {attribute} must be a valid email address.',
     required: 'The {attribute} field is required.',
