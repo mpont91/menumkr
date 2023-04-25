@@ -29,7 +29,15 @@ module.exports = {
     // https://github.com/prettier/eslint-config-prettier#installation
     // usage with Prettier, provided by 'eslint-config-prettier'.
     'prettier',
+    'plugin:@intlify/vue-i18n/recommended',
   ],
+
+  settings: {
+    'vue-i18n': {
+      localeDir: './src/i18n/(en|es).js',
+      messageSyntaxVersion: '^9.0.0',
+    },
+  },
 
   plugins: [
     // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-files
