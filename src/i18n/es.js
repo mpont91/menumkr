@@ -1,4 +1,14 @@
 export default {
+  api: {
+    error_message: 'Lo sentimos. Se ha producido un error.',
+    error_caption:
+      'Intentalo más tarde. Si el problema persiste contacta con nosotros.',
+    success: 'La acción se ha ejecutado con éxito.',
+    validation: 'Hay errores de validación',
+  },
+  action: {
+    dismiss: 'Descartar',
+  },
   menu: {
     auth_login: 'Iniciar sesión',
     auth_register: 'Registrarse',

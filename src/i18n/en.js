@@ -1,4 +1,13 @@
 export default {
+  api: {
+    error_message: 'We are sorry. Something went wrong.',
+    error_caption: 'Try it again and if the problem persists contact us.',
+    success: 'The action has been executed successfully.',
+    validation: 'There are some validation errors.',
+  },
+  action: {
+    dismiss: 'Dismiss',
+  },
   menu: {
     auth_login: 'Login',
     auth_register: 'Sign up',
