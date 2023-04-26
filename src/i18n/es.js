@@ -1,47 +1,49 @@
 export default {
   api: {
-    error_message: "Lo sentimos. Se ha producido un error.",
-    error_caption: "Intentalo más tarde. Si el problema persiste contacta con nosotros.",
-    success: "La acción se ha ejecutado con éxito.",
-    validation: "Hay errores de validación",
+    error_message: 'Lo sentimos. Se ha producido un error.',
+    error_caption: 'Intentalo más tarde. Si el problema persiste contacta con nosotros.',
+    success: 'La acción se ha ejecutado con éxito.',
+    validation: 'Hay errores de validación',
   },
   field: {
-    email: "Correo electrónico",
-    password: "Contraseña",
-    password_confirm: "Confirmar contraseña",
+    email: 'Correo electrónico',
+    password: 'Contraseña',
+    password_confirm: 'Confirmar contraseña',
   },
   action: {
-    dismiss: "Descartar",
+    dismiss: 'Descartar',
   },
   menu: {
-    auth_login: "Iniciar sesión",
-    auth_register: "Registrarse",
-    auth_logout: "Cerrar sesión",
+    auth_login: 'Iniciar sesión',
+    auth_register: 'Registrarse',
+    auth_logout: 'Cerrar sesión',
   },
   validation: {
-    email: "El campo {attribute} debe ser un correo electrónico válido.",
-    required: "El campo {attribute} es requerido.",
+    email: 'El campo {attribute} debe ser un correo electrónico válido.',
+    required: 'El campo {attribute} es requerido.',
+    password_confirm: 'Las contraseñas no coinciden.',
+    password_length: 'La contraseña debe contener más de {n} carácteres.',
   },
   language: {
-    es: "Español",
-    en: "Inglés",
+    es: 'Español',
+    en: 'Inglés',
   },
   auth: {
     login: {
-      action: "Iniciar sesión",
-      reset: "¿Has olvidado la contraseña?",
+      action: 'Iniciar sesión',
+      reset: '¿Has olvidado la contraseña?',
     },
     reset_password: {
-      action: "Enviar",
-      login: "Iniciar sesión a tu cuenta",
+      action: 'Enviar',
+      login: 'Iniciar sesión a tu cuenta',
     },
     register: {
-      action: "Registrarse",
-      login: "¿Ya tienes una cuenta?",
+      action: 'Registrarse',
+      login: '¿Ya tienes una cuenta?',
     },
     update_password: {
-      action: "Actualizar contraseña",
-      login: "¿Ya tienes una cuenta?",
+      action: 'Actualizar contraseña',
+      login: '¿Ya tienes una cuenta?',
     },
   },
 };

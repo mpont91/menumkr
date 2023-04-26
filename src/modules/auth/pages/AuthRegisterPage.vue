@@ -15,7 +15,7 @@
       :label="$t('field.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
-      :rules="[ruleRequired]"
+      :rules="[ruleRequired, rulePasswordLength]"
     >
       <template #prepend>
         <q-icon name="lock" />
@@ -32,8 +32,12 @@
       v-model="registerForm.passwordConfirm"
       :label="$t('field.password_confirm')"
       :type="isPasswordConfirmVisible ? 'text' : 'password'"
+      :rules="[
+        ruleRequired,
+        rulePasswordLength,
+        (value) => rulePasswordConfirm(value, registerForm.password),
+      ]"
       name="password-confirm"
-      :rules="[ruleRequired]"
     >
       <template #prepend>
         <q-icon name="lock" />
@@ -70,13 +74,35 @@
 <script setup>
 import { ref } from 'vue'
 import authRegisterFactory from 'src/modules/auth/factories/auth-register-factory'
-import { ruleEmail, ruleRequired } from 'src/services/validation-service'
+import {
+  ruleEmail,
+  rulePasswordConfirm,
+  rulePasswordLength,
+  ruleRequired,
+} from 'src/services/validation-service'
+import { useAuthRegisterApi } from 'src/api/auth-api'
+import { useLoaderService } from 'src/services/loader-service'
+import { useNotifyService } from 'src/services/notify-service'
 
+const loaderService = useLoaderService()
+const notifyService = useNotifyService()
 const isPasswordVisible = ref(false)
 const isPasswordConfirmVisible = ref(false)
 const registerForm = ref({ ...authRegisterFactory })
 
-const registerHandler = async () => {}
+const registerHandler = async () => {
+  loaderService.show()
+  try {
+    await useAuthRegisterApi({
+      email: registerForm.value.email,
+      password: registerForm.value.password,
+    })
+  } catch (error) {
+    notifyService.error(error)
+  } finally {
+    loaderService.hide()
+  }
+}
 
 const visibilityPassword = () => {
   isPasswordVisible.value = !isPasswordVisible.value

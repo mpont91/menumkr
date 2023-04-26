@@ -16,7 +16,7 @@
       :label="$t('field.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
-      :rules="[ruleRequired]"
+      :rules="[ruleRequired, rulePasswordLength]"
     >
       <template #prepend>
         <q-icon name="lock" />
@@ -34,7 +34,11 @@
       :label="$t('field.password_confirm')"
       :type="isPasswordConfirmVisible ? 'text' : 'password'"
       name="password-confirm"
-      :rules="[ruleRequired]"
+      :rules="[
+        ruleRequired,
+        rulePasswordLength,
+        (value) => rulePasswordConfirm(value, updatePasswordForm.password),
+      ]"
     >
       <template #prepend>
         <q-icon name="lock" />
@@ -71,7 +75,12 @@
 <script setup>
 import { ref } from 'vue'
 import authUpdatePasswordFactory from 'src/modules/auth/factories/auth-update-password-factory'
-import { ruleEmail, ruleRequired } from 'src/services/validation-service'
+import {
+  ruleEmail,
+  rulePasswordConfirm,
+  rulePasswordLength,
+  ruleRequired,
+} from 'src/services/validation-service'
 
 const isPasswordVisible = ref(false)
 const isPasswordConfirmVisible = ref(false)
