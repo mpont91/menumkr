@@ -22,7 +22,7 @@ export const useNotifyService = () => {
     notify({
       type: 'negative',
       message: 'Error',
-      caption: error.response.data.message,
+      caption: error?.response?.data?.message,
       timeout: 10000,
     })
   }
