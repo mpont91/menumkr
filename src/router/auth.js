@@ -13,16 +13,16 @@ export default {
       component: () => import('src/modules/auth/pages/AuthLoginPage.vue'),
     },
     {
+      path: 'forgot-password',
+      name: 'auth_forgot_password',
+      component: () =>
+        import('src/modules/auth/pages/AuthForgotPasswordPage.vue'),
+    },
+    {
       path: 'reset-password',
       name: 'auth_reset_password',
       component: () =>
         import('src/modules/auth/pages/AuthResetPasswordPage.vue'),
-    },
-    {
-      path: 'update-password',
-      name: 'auth_update_password',
-      component: () =>
-        import('src/modules/auth/pages/AuthUpdatePasswordPage.vue'),
     },
     {
       path: 'register',

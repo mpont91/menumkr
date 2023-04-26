@@ -43,7 +43,7 @@
   <q-btn
     icon="lock_reset"
     :label="$t('auth.login.reset')"
-    :to="{ name: 'auth_reset_password' }"
+    :to="{ name: 'auth_forgot_password' }"
     flat
     class="full-width q-mt-lg"
   />

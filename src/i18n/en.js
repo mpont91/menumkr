@@ -33,16 +33,16 @@ export default {
       action: 'Login',
       reset: 'Forgot your password?',
     },
-    reset_password: {
+    forgot_password: {
       action: 'Submit',
       login: 'Login into your account',
     },
-    register: {
-      action: 'Sign up',
+    reset_password: {
+      action: 'Reset password',
       login: 'Do you already have an account?',
     },
-    update_password: {
-      action: 'Update password',
+    register: {
+      action: 'Sign up',
       login: 'Do you already have an account?',
     },
   },
