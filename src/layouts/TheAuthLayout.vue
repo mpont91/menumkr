@@ -1,6 +1,8 @@
 <template>
-  <div class="window-height window-width row justify-center items-center">
-    <q-card>
+  <div
+    class="window-height window-width row justify-center items-center bg-secondary"
+  >
+    <q-card class="bg-grey-1">
       <the-language-selector-component label class="full-width" />
       <q-card-section>
         <router-link :to="{ name: 'guest' }">
