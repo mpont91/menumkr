@@ -1,6 +1,8 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
 
+const LOGIN_PATH = '/auth/login'
+
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
 // If any client changes this (global) instance, it might be a
@@ -14,25 +16,18 @@ api.defaults.withCredentials = true
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response.status === 419) {
-      // Refresh our session token
-      await api.get(process.env.API + '/sanctum/csrf-cookie')
+    switch (error?.response?.status) {
+      case 419:
+        // Refresh the csrf token
+        await api.get(process.env.API + '/sanctum/csrf-cookie')
 
-      // Return a new request using the original request's configuration
-      return api(error.response.config)
-    }
-
-    return Promise.reject(error)
-  }
-)
-
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response.status === 401) {
-      window.location = '/auth/login'
-    } else {
-      return Promise.reject(error)
+        // Return a new request using the original request's configuration
+        return api(error.response.config)
+      case 401:
+        window.location = LOGIN_PATH
+        break
+      default:
+        return Promise.reject(error)
     }
   }
 )
