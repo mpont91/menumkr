@@ -2,7 +2,7 @@
   <q-form class="q-gutter-md" @submit="loginHandler">
     <q-input
       v-model="loginForm.email"
-      :label="$t('auth.login.email')"
+      :label="$t('field.email')"
       name="email"
       :rules="[ruleRequired, ruleEmail]"
     >
@@ -12,7 +12,7 @@
     </q-input>
     <q-input
       v-model="loginForm.password"
-      :label="$t('auth.login.password')"
+      :label="$t('field.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
       :rules="[ruleRequired]"

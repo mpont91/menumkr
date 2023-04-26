@@ -2,7 +2,7 @@
   <q-form class="q-gutter-md" @submit="resetPasswordHandler">
     <q-input
       v-model="resetPasswordForm.email"
-      :label="$t('auth.reset_password.email')"
+      :label="$t('field.email')"
       name="email"
     >
       <template #prepend>

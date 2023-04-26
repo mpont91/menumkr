@@ -3,7 +3,7 @@
     flat
     icon="translate"
     square
-    :label="label ? $t(`languages.${$i18n.locale}`) : null"
+    :label="label ? $t(`language.${$i18n.locale}`) : null"
   >
     <q-list>
       <q-item
@@ -15,7 +15,7 @@
       >
         <q-item-section>
           <q-item-label>
-            {{ $t(`languages.${availableLocale}`) }}
+            {{ $t(`language.${availableLocale}`) }}
           </q-item-label>
         </q-item-section>
       </q-item>

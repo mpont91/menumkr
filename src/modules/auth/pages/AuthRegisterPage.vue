@@ -2,7 +2,7 @@
   <q-form class="q-gutter-md" @submit="registerHandler">
     <q-input
       v-model="registerForm.email"
-      :label="$t('auth.register.email')"
+      :label="$t('field.email')"
       name="email"
       :rules="[ruleRequired, ruleEmail]"
     >
@@ -12,7 +12,7 @@
     </q-input>
     <q-input
       v-model="registerForm.password"
-      :label="$t('auth.register.password')"
+      :label="$t('field.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
       :rules="[ruleRequired]"
@@ -30,7 +30,7 @@
     </q-input>
     <q-input
       v-model="registerForm.passwordConfirm"
-      :label="$t('auth.register.password_confirm')"
+      :label="$t('field.password_confirm')"
       :type="isPasswordConfirmVisible ? 'text' : 'password'"
       name="password-confirm"
       :rules="[ruleRequired]"
