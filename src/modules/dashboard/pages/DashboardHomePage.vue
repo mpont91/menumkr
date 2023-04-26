@@ -1,6 +1,8 @@
 <template>
-  <p>Menu</p>
-  <q-btn @click="logout">Logout</q-btn>
+  <q-page>
+    <p>Menu</p>
+    <q-btn @click="logout">Logout</q-btn>
+  </q-page>
 </template>
 
 <script setup>

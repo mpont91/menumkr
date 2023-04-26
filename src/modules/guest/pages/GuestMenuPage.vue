@@ -1,3 +1,5 @@
 <template>
-  <p>Menu</p>
+  <q-page>
+    <p>Menu</p>
+  </q-page>
 </template>

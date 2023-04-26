@@ -1,21 +1,17 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-page-container>
-      <div class="window-height window-width row justify-center items-center">
-        <q-card>
-          <the-language-selector-component label class="full-width" />
-          <q-card-section>
-            <router-link :to="{ name: 'guest' }">
-              <q-img :src="logo" width="330px" />
-            </router-link>
-          </q-card-section>
-          <q-card-section>
-            <router-view />
-          </q-card-section>
-        </q-card>
-      </div>
-    </q-page-container>
-  </q-layout>
+  <div class="window-height window-width row justify-center items-center">
+    <q-card>
+      <the-language-selector-component label class="full-width" />
+      <q-card-section>
+        <router-link :to="{ name: 'guest' }">
+          <q-img :src="logo" width="330px" />
+        </router-link>
+      </q-card-section>
+      <q-card-section>
+        <router-view />
+      </q-card-section>
+    </q-card>
+  </div>
 </template>
 
 <script setup>
