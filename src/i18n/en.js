@@ -46,4 +46,4 @@ export default {
       login: 'Do you already have an account?',
     },
   },
-};
+}

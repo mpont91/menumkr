@@ -46,4 +46,4 @@ export default {
       login: '¿Ya tienes una cuenta?',
     },
   },
-};
+}
