@@ -1,7 +1,7 @@
 import { Notify } from 'quasar'
 import { useI18n } from 'boot/i18n'
 
-const { t } = useI18n()
+const { t } = useI18n().global
 
 export const useNotifyService = () => {
   const notify = ({
@@ -21,9 +21,9 @@ export const useNotifyService = () => {
       timeout,
       actions: [
         {
-          label: t('actions.dismiss'),
+          icon: 'close',
+          round: true,
           color: 'white',
-          handler: () => {},
         },
       ],
     })
