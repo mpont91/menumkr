@@ -81,12 +81,29 @@ import {
   rulePasswordLength,
   ruleRequired,
 } from 'src/services/validation-service'
+import { useAuthResetPasswordApi } from 'src/api/auth-api'
+import { useLoaderService } from 'src/services/loader-service'
+import { useNotifyService } from 'src/services/notify-service'
 
 const isPasswordVisible = ref(false)
 const isPasswordConfirmVisible = ref(false)
 const resetPasswordForm = ref({ ...authResetPasswordFactory })
+const loaderService = useLoaderService()
+const notifyService = useNotifyService()
 
-const resetPasswordHandler = async () => {}
+const resetPasswordHandler = async () => {
+  loaderService.show()
+  try {
+    await useAuthResetPasswordApi({
+      token: resetPasswordForm.value.token,
+      password: resetPasswordForm.value.password,
+    })
+  } catch (error) {
+    notifyService.error(error)
+  } finally {
+    loaderService.hide()
+  }
+}
 
 const visibilityPassword = () => {
   isPasswordVisible.value = !isPasswordVisible.value

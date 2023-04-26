@@ -31,7 +31,7 @@
 <script setup>
 import { ref } from 'vue'
 import authForgotPasswordFactory from 'src/modules/auth/factories/auth-forgot-password-factory'
-import { useAuthRegisterApi } from 'src/api/auth-api'
+import { useAuthForgotPasswordApi } from 'src/api/auth-api'
 import { useNotifyService } from 'src/services/notify-service'
 import { useLoaderService } from 'src/services/loader-service'
 
@@ -41,7 +41,7 @@ const forgotPasswordForm = ref({ ...authForgotPasswordFactory })
 const forgotPasswordHandler = async () => {
   loaderService.show()
   try {
-    await useAuthRegisterApi({
+    await useAuthForgotPasswordApi({
       email: forgotPasswordForm.value.email,
     })
   } catch (error) {
