@@ -6,6 +6,7 @@ export default {
     validation: 'There are some validation errors.',
   },
   field: {
+    name: 'Name',
     email: 'Email',
     password: 'Password',
     password_confirm: 'Confirm password',

@@ -1,13 +1,23 @@
 <template>
   <q-form class="q-gutter-md" @submit="registerHandler">
     <q-input
+      v-model="registerForm.name"
+      :label="$t('field.name')"
+      name="name"
+      :rules="[ruleRequired]"
+    >
+      <template #prepend>
+        <q-icon name="person" />
+      </template>
+    </q-input>
+    <q-input
       v-model="registerForm.email"
       :label="$t('field.email')"
       name="email"
       :rules="[ruleRequired, ruleEmail]"
     >
       <template #prepend>
-        <q-icon name="person" />
+        <q-icon name="alternate_email" />
       </template>
     </q-input>
     <q-input
@@ -94,8 +104,10 @@ const registerHandler = async () => {
   loaderService.show()
   try {
     await useAuthRegisterApi({
+      name: registerForm.value.name,
       email: registerForm.value.email,
       password: registerForm.value.password,
+      password_confirmation: registerForm.value.passwordConfirm,
     })
   } catch (error) {
     notifyService.error(error)
