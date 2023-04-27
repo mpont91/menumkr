@@ -103,12 +103,7 @@ const registerForm = ref({ ...authRegisterFactory })
 const registerHandler = async () => {
   loaderService.show()
   try {
-    await useAuthRegisterApi({
-      name: registerForm.value.name,
-      email: registerForm.value.email,
-      password: registerForm.value.password,
-      password_confirmation: registerForm.value.passwordConfirm,
-    })
+    await useAuthRegisterApi(registerForm.value)
   } catch (error) {
     notifyService.error(error)
   } finally {

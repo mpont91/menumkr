@@ -94,10 +94,7 @@ const notifyService = useNotifyService()
 const resetPasswordHandler = async () => {
   loaderService.show()
   try {
-    await useAuthResetPasswordApi({
-      token: resetPasswordForm.value.token,
-      password: resetPasswordForm.value.password,
-    })
+    await useAuthResetPasswordApi(resetPasswordForm.value)
   } catch (error) {
     notifyService.error(error)
   } finally {

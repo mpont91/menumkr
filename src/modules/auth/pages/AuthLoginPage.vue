@@ -67,10 +67,7 @@ const loginForm = ref({ ...authLoginFactory })
 const loginHandler = async () => {
   loaderService.show()
   try {
-    await useLoginService({
-      email: loginForm.value.email,
-      password: loginForm.value.password,
-    })
+    await useLoginService(loginForm.value)
     await router.push({ name: 'dashboard' })
   } catch (error) {
     notifyService.error(error)

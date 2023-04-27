@@ -41,9 +41,7 @@ const forgotPasswordForm = ref({ ...authForgotPasswordFactory })
 const forgotPasswordHandler = async () => {
   loaderService.show()
   try {
-    await useAuthForgotPasswordApi({
-      email: forgotPasswordForm.value.email,
-    })
+    await useAuthForgotPasswordApi(forgotPasswordForm.value)
   } catch (error) {
     notifyService.error(error)
   } finally {
