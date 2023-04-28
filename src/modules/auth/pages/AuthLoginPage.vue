@@ -1,7 +1,12 @@
 <template>
-  <q-form class="q-gutter-md" @submit="loginHandler">
+  <q-form
+    ref="loginForm"
+    class="q-gutter-md"
+    @submit="loginSubmitHandler"
+    @reset="loginResetHandler"
+  >
     <q-input
-      v-model="loginForm.email"
+      v-model="loginFields.email"
       :label="$t('field.email')"
       name="email"
       :rules="[ruleRequired, ruleEmail]"
@@ -11,7 +16,7 @@
       </template>
     </q-input>
     <q-input
-      v-model="loginForm.password"
+      v-model="loginFields.password"
       :label="$t('field.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
@@ -62,13 +67,19 @@ const router = useRouter()
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 const isPasswordVisible = ref(false)
-const loginForm = ref({ ...authLoginFactory })
+const loginForm = ref()
+const loginFields = ref({ ...authLoginFactory })
 
-const loginHandler = async () => {
+const visibilityPassword = () => {
+  isPasswordVisible.value = !isPasswordVisible.value
+}
+
+const loginSubmitHandler = async () => {
   loaderService.show()
   try {
-    await useLoginService(loginForm.value)
+    await useLoginService(loginFields.value)
     notifyService.success()
+    loginForm.value.reset()
     await router.push({ name: 'dashboard' })
   } catch (error) {
     notifyService.error(error)
@@ -77,7 +88,7 @@ const loginHandler = async () => {
   }
 }
 
-const visibilityPassword = () => {
-  isPasswordVisible.value = !isPasswordVisible.value
+const loginResetHandler = () => {
+  loginFields.value = { ...authLoginFactory }
 }
 </script>

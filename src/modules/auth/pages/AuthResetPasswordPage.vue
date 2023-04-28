@@ -1,7 +1,12 @@
 <template>
-  <q-form class="q-gutter-md" @submit="resetPasswordHandler">
+  <q-form
+    ref="resetPasswordForm"
+    class="q-gutter-md"
+    @submit="resetPasswordSubmitHandler"
+    @reset="resetPasswordResetHandler"
+  >
     <q-input
-      v-model="resetPasswordForm.email"
+      v-model="resetPasswordFields.email"
       :label="$t('field.email')"
       name="email"
       :rules="[ruleRequired, ruleEmail]"
@@ -12,7 +17,7 @@
       </template>
     </q-input>
     <q-input
-      v-model="resetPasswordForm.password"
+      v-model="resetPasswordFields.password"
       :label="$t('field.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
@@ -30,14 +35,15 @@
       </template>
     </q-input>
     <q-input
-      v-model="resetPasswordForm.passwordConfirmation"
+      v-model="resetPasswordFields.passwordConfirmation"
       :label="$t('field.password_confirm')"
       :type="isPasswordConfirmationVisible ? 'text' : 'password'"
       name="password-confirm"
       :rules="[
         ruleRequired,
         rulePasswordLength,
-        (value) => rulePasswordConfirmation(value, resetPasswordForm.password),
+        (value) =>
+          rulePasswordConfirmation(value, resetPasswordFields.password),
       ]"
     >
       <template #prepend>
@@ -91,19 +97,28 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const isPasswordVisible = ref(false)
 const isPasswordConfirmationVisible = ref(false)
-const resetPasswordForm = ref({ ...authResetPasswordFactory })
+const resetPasswordForm = ref()
+const resetPasswordFields = ref({ ...authResetPasswordFactory })
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 
-resetPasswordForm.value.email = route.query.email
-resetPasswordForm.value.token = route.params.token
+resetPasswordFields.value.email = route.query.email
+resetPasswordFields.value.token = route.params.token
 
-const resetPasswordHandler = async () => {
+const visibilityPassword = () => {
+  isPasswordVisible.value = !isPasswordVisible.value
+}
+const visibilityPasswordConfirmation = () => {
+  isPasswordConfirmationVisible.value = !isPasswordConfirmationVisible.value
+}
+
+const resetPasswordSubmitHandler = async () => {
   loaderService.show()
   try {
-    await useAuthResetPasswordApi(resetPasswordForm.value)
+    await useAuthResetPasswordApi(resetPasswordFields.value)
     notifyService.success()
-    resetPasswordForm.value = { ...authResetPasswordFactory }
+    resetPasswordForm.value.reset()
+    resetPasswordFields.value = { ...authResetPasswordFactory }
   } catch (error) {
     notifyService.error(error)
   } finally {
@@ -111,10 +126,7 @@ const resetPasswordHandler = async () => {
   }
 }
 
-const visibilityPassword = () => {
-  isPasswordVisible.value = !isPasswordVisible.value
-}
-const visibilityPasswordConfirmation = () => {
-  isPasswordConfirmationVisible.value = !isPasswordConfirmationVisible.value
+const resetPasswordResetHandler = () => {
+  resetPasswordFields.value = { ...authResetPasswordFactory }
 }
 </script>

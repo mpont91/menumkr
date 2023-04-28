@@ -1,7 +1,12 @@
 <template>
-  <q-form class="q-gutter-md" @submit="forgotPasswordHandler">
+  <q-form
+    ref="forgotPasswordForm"
+    class="q-gutter-md"
+    @submit="forgotPasswordSubmitHandler"
+    @reset="forgotPasswordResetHandler"
+  >
     <q-input
-      v-model="forgotPasswordForm.email"
+      v-model="forgotPasswordFields.email"
       :label="$t('field.email')"
       name="email"
       :rules="[ruleRequired, ruleEmail]"
@@ -39,17 +44,21 @@ import { ruleEmail, ruleRequired } from 'src/services/validation-service'
 
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
-const forgotPasswordForm = ref({ ...authForgotPasswordFactory })
-const forgotPasswordHandler = async () => {
+const forgotPasswordForm = ref()
+const forgotPasswordFields = ref({ ...authForgotPasswordFactory })
+const forgotPasswordSubmitHandler = async () => {
   loaderService.show()
   try {
-    await useAuthForgotPasswordApi(forgotPasswordForm.value)
+    await useAuthForgotPasswordApi(forgotPasswordFields.value)
     notifyService.success()
-    forgotPasswordForm.value = { ...authForgotPasswordFactory }
+    forgotPasswordForm.value.reset()
   } catch (error) {
     notifyService.error(error)
   } finally {
     loaderService.hide()
   }
+}
+const forgotPasswordResetHandler = () => {
+  forgotPasswordFields.value = { ...authForgotPasswordFactory }
 }
 </script>

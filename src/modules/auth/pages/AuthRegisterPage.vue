@@ -1,7 +1,12 @@
 <template>
-  <q-form class="q-gutter-md" @submit="registerHandler">
+  <q-form
+    ref="registerForm"
+    class="q-gutter-md"
+    @submit="registerSubmitHandler"
+    @reset="registerResetHandler"
+  >
     <q-input
-      v-model="registerForm.name"
+      v-model="registerFields.name"
       :label="$t('field.name')"
       name="name"
       :rules="[ruleRequired]"
@@ -11,7 +16,7 @@
       </template>
     </q-input>
     <q-input
-      v-model="registerForm.email"
+      v-model="registerFields.email"
       :label="$t('field.email')"
       name="email"
       :rules="[ruleRequired, ruleEmail]"
@@ -21,7 +26,7 @@
       </template>
     </q-input>
     <q-input
-      v-model="registerForm.password"
+      v-model="registerFields.password"
       :label="$t('field.password')"
       :type="isPasswordVisible ? 'text' : 'password'"
       name="password"
@@ -39,13 +44,13 @@
       </template>
     </q-input>
     <q-input
-      v-model="registerForm.passwordConfirmation"
+      v-model="registerFields.passwordConfirmation"
       :label="$t('field.password_confirm')"
       :type="isPasswordConfirmationVisible ? 'text' : 'password'"
       :rules="[
         ruleRequired,
         rulePasswordLength,
-        (value) => rulePasswordConfirmation(value, registerForm.password),
+        (value) => rulePasswordConfirmation(value, registerFields.password),
       ]"
       name="password-confirm"
     >
@@ -104,13 +109,22 @@ const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 const isPasswordVisible = ref(false)
 const isPasswordConfirmationVisible = ref(false)
-const registerForm = ref({ ...authRegisterFactory })
+const registerForm = ref()
+const registerFields = ref({ ...authRegisterFactory })
 
-const registerHandler = async () => {
+const visibilityPassword = () => {
+  isPasswordVisible.value = !isPasswordVisible.value
+}
+const visibilityPasswordConfirmation = () => {
+  isPasswordConfirmationVisible.value = !isPasswordConfirmationVisible.value
+}
+
+const registerSubmitHandler = async () => {
   loaderService.show()
   try {
-    await useAuthRegisterApi(registerForm.value)
+    await useAuthRegisterApi(registerFields.value)
     notifyService.success()
+    registerForm.value.reset()
     userStore.setUser(await useAuthUserApi())
     await router.push({ name: 'dashboard' })
   } catch (error) {
@@ -120,10 +134,7 @@ const registerHandler = async () => {
   }
 }
 
-const visibilityPassword = () => {
-  isPasswordVisible.value = !isPasswordVisible.value
-}
-const visibilityPasswordConfirmation = () => {
-  isPasswordConfirmationVisible.value = !isPasswordConfirmationVisible.value
+const registerResetHandler = () => {
+  registerFields.value = { ...authRegisterFactory }
 }
 </script>
