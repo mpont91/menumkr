@@ -16,7 +16,7 @@ export default {
   },
   menu: {
     auth_login: 'Login',
-    auth_register: 'Sign up',
+    auth_register: 'Register',
     auth_logout: 'Logout',
   },
   validation: {
@@ -48,7 +48,7 @@ export default {
       success_caption: 'You will be redirected to the login page automatically.',
     },
     register: {
-      action: 'Sign up',
+      action: 'Register',
       login: 'Do you already have an account?',
       success_message: 'You have been registered successfully.',
       success_caption: 'You will logged in and redirected automatically.',
