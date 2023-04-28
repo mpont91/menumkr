@@ -4,6 +4,7 @@
       v-model="forgotPasswordForm.email"
       :label="$t('field.email')"
       name="email"
+      :rules="[ruleRequired, ruleEmail]"
     >
       <template #prepend>
         <q-icon name="person" />
@@ -34,6 +35,7 @@ import authForgotPasswordFactory from 'src/modules/auth/factories/auth-forgot-pa
 import { useAuthForgotPasswordApi } from 'src/api/auth-api'
 import { useNotifyService } from 'src/services/notify-service'
 import { useLoaderService } from 'src/services/loader-service'
+import { ruleEmail, ruleRequired } from 'src/services/validation-service'
 
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
@@ -42,6 +44,8 @@ const forgotPasswordHandler = async () => {
   loaderService.show()
   try {
     await useAuthForgotPasswordApi(forgotPasswordForm.value)
+    notifyService.success()
+    forgotPasswordForm.value = { ...authForgotPasswordFactory }
   } catch (error) {
     notifyService.error(error)
   } finally {

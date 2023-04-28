@@ -22,7 +22,7 @@
         <q-icon name="lock" />
       </template>
       <template #append>
-        <q-iconç
+        <q-icon
           :name="isPasswordVisible ? 'visibility' : 'visibility_off'"
           class="cursor-pointer"
           @click="visibilityPassword"
@@ -86,17 +86,24 @@ import {
 import { useAuthResetPasswordApi } from 'src/api/auth-api'
 import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const isPasswordVisible = ref(false)
 const isPasswordConfirmationVisible = ref(false)
 const resetPasswordForm = ref({ ...authResetPasswordFactory })
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 
+resetPasswordForm.value.email = route.query.email
+resetPasswordForm.value.token = route.params.token
+
 const resetPasswordHandler = async () => {
   loaderService.show()
   try {
     await useAuthResetPasswordApi(resetPasswordForm.value)
+    notifyService.success()
+    resetPasswordForm.value = { ...authResetPasswordFactory }
   } catch (error) {
     notifyService.error(error)
   } finally {

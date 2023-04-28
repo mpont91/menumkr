@@ -110,6 +110,7 @@ const registerHandler = async () => {
   loaderService.show()
   try {
     await useAuthRegisterApi(registerForm.value)
+    notifyService.success()
     userStore.setUser(await useAuthUserApi())
     await router.push({ name: 'dashboard' })
   } catch (error) {

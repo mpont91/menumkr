@@ -27,11 +27,13 @@ export const useAuthForgotPasswordApi = async ({ email }) =>
   await api.post('/forgot-password', { email })
 
 export const useAuthResetPasswordApi = async ({
+  email,
   token,
   password,
   passwordConfirmation,
 }) =>
   await api.post('/reset-password', {
+    email,
     token,
     password,
     password_confirmation: passwordConfirmation,

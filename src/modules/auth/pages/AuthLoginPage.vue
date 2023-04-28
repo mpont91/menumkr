@@ -68,6 +68,7 @@ const loginHandler = async () => {
   loaderService.show()
   try {
     await useLoginService(loginForm.value)
+    notifyService.success()
     await router.push({ name: 'dashboard' })
   } catch (error) {
     notifyService.error(error)
