@@ -37,10 +37,11 @@ export const useNotifyService = () => {
       timeout: 10000,
     })
   }
-  const success = () => {
+  const success = ({ message, caption } = { message: null, caption: null }) => {
     notify({
       type: 'positive',
-      message: t('api.success'),
+      message: message ?? t('api.success'),
+      caption: caption,
     })
   }
 

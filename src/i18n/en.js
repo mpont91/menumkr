@@ -32,19 +32,26 @@ export default {
   auth: {
     login: {
       action: 'Login',
-      reset: 'Forgot your password?',
+      forgot_password: 'Forgot your password?',
+      success_message: 'You have been logged in successfully.',
+      success_caption: 'You will be redirected automatically.',
     },
     forgot_password: {
       action: 'Submit',
       login: 'Login into your account',
+      success_message: 'We have sent you an email with the instructions for resetting the password.',
     },
     reset_password: {
       action: 'Reset password',
       login: 'Do you already have an account?',
+      success_message: 'You have reset the password successfully.',
+      success_caption: 'You will be redirected to the login page automatically.',
     },
     register: {
       action: 'Sign up',
       login: 'Do you already have an account?',
+      success_message: 'You have been registered successfully.',
+      success_caption: 'You will logged in and redirected automatically.',
     },
   },
 }

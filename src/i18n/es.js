@@ -32,19 +32,26 @@ export default {
   auth: {
     login: {
       action: 'Iniciar sesión',
-      reset: '¿Has olvidado la contraseña?',
+      forgot_password: '¿Has olvidado la contraseña?',
+      success_message: 'Has iniciado correctamente la sesión.',
+      success_caption: 'Serás redirigido automáticamente.',
     },
     forgot_password: {
       action: 'Enviar',
       login: 'Iniciar sesión a tu cuenta',
+      success_message: 'Te hemos enviado un email con las instrucciones para restablecer la contraseña.',
     },
     reset_password: {
       action: 'Resetear contraseña',
       login: '¿Ya tienes una cuenta?',
+      success_message: 'Has restablecido correctamente la contraseña.',
+      success_caption: 'Serás redirigido a la página de login automáticamente.',
     },
     register: {
       action: 'Registrarse',
       login: '¿Ya tienes una cuenta?',
+      success_message: 'Te has registrado correctamente.',
+      success_caption: 'Se te iniciará la sesión y serás redirigido automaticamente.',
     },
   },
 }

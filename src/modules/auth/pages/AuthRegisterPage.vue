@@ -102,6 +102,8 @@ import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
 import { useUserStore } from 'stores/user-store'
 import { useRouter } from 'vue-router'
+import { useDelayService } from 'src/services/delay-service'
+import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -111,6 +113,8 @@ const isPasswordVisible = ref(false)
 const isPasswordConfirmationVisible = ref(false)
 const registerForm = ref()
 const registerFields = ref({ ...authRegisterFactory })
+const { t } = useI18n()
+const delayService = useDelayService()
 
 const visibilityPassword = () => {
   isPasswordVisible.value = !isPasswordVisible.value
@@ -123,9 +127,13 @@ const registerSubmitHandler = async () => {
   loaderService.show()
   try {
     await useAuthRegisterApi(registerFields.value)
-    notifyService.success()
+    notifyService.success({
+      message: t('auth.register.success_message'),
+      caption: t('auth.register.success_caption'),
+    })
     registerForm.value.reset()
     userStore.setUser(await useAuthUserApi())
+    await delayService.delay()
     await router.push({ name: 'dashboard' })
   } catch (error) {
     notifyService.error(error)

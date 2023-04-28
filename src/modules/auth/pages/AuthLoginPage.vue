@@ -47,7 +47,7 @@
   </q-form>
   <q-btn
     icon="lock_reset"
-    :label="$t('auth.login.reset')"
+    :label="$t('auth.login.forgot_password')"
     :to="{ name: 'auth_forgot_password' }"
     flat
     class="full-width q-mt-lg"
@@ -62,13 +62,17 @@ import { useLoginService } from 'src/modules/auth/services/login-service'
 import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
 import { ruleEmail, ruleRequired } from 'src/services/validation-service'
+import { useDelayService } from 'src/services/delay-service'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const router = useRouter()
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 const isPasswordVisible = ref(false)
 const loginForm = ref()
 const loginFields = ref({ ...authLoginFactory })
+const delayService = useDelayService()
 
 const visibilityPassword = () => {
   isPasswordVisible.value = !isPasswordVisible.value
@@ -78,8 +82,12 @@ const loginSubmitHandler = async () => {
   loaderService.show()
   try {
     await useLoginService(loginFields.value)
-    notifyService.success()
+    notifyService.success({
+      message: t('auth.login.success_message'),
+      caption: t('auth.login.success_caption'),
+    })
     loginForm.value.reset()
+    await delayService.delay()
     await router.push({ name: 'dashboard' })
   } catch (error) {
     notifyService.error(error)

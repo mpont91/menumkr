@@ -93,6 +93,9 @@ import { useAuthResetPasswordApi } from 'src/api/auth-api'
 import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useDelayService } from 'src/services/delay-service'
+import { useRouter } from 'vue-router'
 
 const route = useRoute()
 const isPasswordVisible = ref(false)
@@ -101,6 +104,9 @@ const resetPasswordForm = ref()
 const resetPasswordFields = ref({ ...authResetPasswordFactory })
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
+const { t } = useI18n()
+const delayService = useDelayService()
+const router = useRouter()
 
 resetPasswordFields.value.email = route.query.email
 resetPasswordFields.value.token = route.params.token
@@ -116,9 +122,13 @@ const resetPasswordSubmitHandler = async () => {
   loaderService.show()
   try {
     await useAuthResetPasswordApi(resetPasswordFields.value)
-    notifyService.success()
+    notifyService.success({
+      message: t('auth.reset_password.success_message'),
+      caption: t('auth.reset_password.success_caption'),
+    })
     resetPasswordForm.value.reset()
-    resetPasswordFields.value = { ...authResetPasswordFactory }
+    await delayService.delay()
+    await router.push({ name: 'auth_login' })
   } catch (error) {
     notifyService.error(error)
   } finally {
