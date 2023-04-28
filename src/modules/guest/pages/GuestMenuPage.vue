@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page padding>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
       luctus tempor leo, luctus lacinia nisl dictum sed. Fusce imperdiet
