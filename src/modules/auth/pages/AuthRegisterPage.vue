@@ -92,10 +92,14 @@ import {
   rulePasswordLength,
   ruleRequired,
 } from 'src/services/validation-service'
-import { useAuthRegisterApi } from 'src/api/auth-api'
+import { useAuthRegisterApi, useAuthUserApi } from 'src/api/auth-api'
 import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
+import { useUserStore } from 'stores/user-store'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+const userStore = useUserStore()
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 const isPasswordVisible = ref(false)
@@ -106,6 +110,8 @@ const registerHandler = async () => {
   loaderService.show()
   try {
     await useAuthRegisterApi(registerForm.value)
+    userStore.setUser(await useAuthUserApi())
+    await router.push({ name: 'dashboard' })
   } catch (error) {
     notifyService.error(error)
   } finally {
