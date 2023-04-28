@@ -12,7 +12,7 @@ export const ruleEmail = (value) => {
   )
 }
 
-export const rulePasswordConfirm = (value, password) => {
+export const rulePasswordConfirmation = (value, password) => {
   return value === password || t('validation.password_confirm')
 }
 

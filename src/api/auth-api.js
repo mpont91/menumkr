@@ -14,15 +14,25 @@ export const useAuthRegisterApi = async ({
   name,
   email,
   password,
-  password_confirmation,
+  passwordConfirmation,
 }) =>
-  await api.post('/register', { name, email, password, password_confirmation })
+  await api.post('/register', {
+    name,
+    email,
+    password,
+    password_confirmation: passwordConfirmation,
+  })
 
 export const useAuthForgotPasswordApi = async ({ email }) =>
   await api.post('/forgot-password', { email })
 
-export const useAuthResetPasswordApi = async ({ token, password }) =>
+export const useAuthResetPasswordApi = async ({
+  token,
+  password,
+  passwordConfirmation,
+}) =>
   await api.post('/reset-password', {
     token,
     password,
+    password_confirmation: passwordConfirmation,
   })

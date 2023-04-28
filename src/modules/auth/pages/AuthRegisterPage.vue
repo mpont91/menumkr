@@ -39,13 +39,13 @@
       </template>
     </q-input>
     <q-input
-      v-model="registerForm.passwordConfirm"
+      v-model="registerForm.passwordConfirmation"
       :label="$t('field.password_confirm')"
-      :type="isPasswordConfirmVisible ? 'text' : 'password'"
+      :type="isPasswordConfirmationVisible ? 'text' : 'password'"
       :rules="[
         ruleRequired,
         rulePasswordLength,
-        (value) => rulePasswordConfirm(value, registerForm.password),
+        (value) => rulePasswordConfirmation(value, registerForm.password),
       ]"
       name="password-confirm"
     >
@@ -54,9 +54,11 @@
       </template>
       <template #append>
         <q-icon
-          :name="isPasswordConfirmVisible ? 'visibility' : 'visibility_off'"
+          :name="
+            isPasswordConfirmationVisible ? 'visibility' : 'visibility_off'
+          "
           class="cursor-pointer"
-          @click="visibilityPasswordConfirm"
+          @click="visibilityPasswordConfirmation"
         />
       </template>
     </q-input>
@@ -86,7 +88,7 @@ import { ref } from 'vue'
 import authRegisterFactory from 'src/modules/auth/factories/auth-register-factory'
 import {
   ruleEmail,
-  rulePasswordConfirm,
+  rulePasswordConfirmation,
   rulePasswordLength,
   ruleRequired,
 } from 'src/services/validation-service'
@@ -97,7 +99,7 @@ import { useNotifyService } from 'src/services/notify-service'
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
 const isPasswordVisible = ref(false)
-const isPasswordConfirmVisible = ref(false)
+const isPasswordConfirmationVisible = ref(false)
 const registerForm = ref({ ...authRegisterFactory })
 
 const registerHandler = async () => {
@@ -114,7 +116,7 @@ const registerHandler = async () => {
 const visibilityPassword = () => {
   isPasswordVisible.value = !isPasswordVisible.value
 }
-const visibilityPasswordConfirm = () => {
-  isPasswordConfirmVisible.value = !isPasswordConfirmVisible.value
+const visibilityPasswordConfirmation = () => {
+  isPasswordConfirmationVisible.value = !isPasswordConfirmationVisible.value
 }
 </script>

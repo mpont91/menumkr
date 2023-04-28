@@ -1,5 +1,5 @@
 export default {
   password: null,
-  passwordConfirm: null,
+  passwordConfirmation: null,
   token: null,
 }

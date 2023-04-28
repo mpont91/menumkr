@@ -30,14 +30,14 @@
       </template>
     </q-input>
     <q-input
-      v-model="resetPasswordForm.passwordConfirm"
+      v-model="resetPasswordForm.passwordConfirmation"
       :label="$t('field.password_confirm')"
-      :type="isPasswordConfirmVisible ? 'text' : 'password'"
+      :type="isPasswordConfirmationVisible ? 'text' : 'password'"
       name="password-confirm"
       :rules="[
         ruleRequired,
         rulePasswordLength,
-        (value) => rulePasswordConfirm(value, resetPasswordForm.password),
+        (value) => rulePasswordConfirmation(value, resetPasswordForm.password),
       ]"
     >
       <template #prepend>
@@ -45,9 +45,11 @@
       </template>
       <template #append>
         <q-icon
-          :name="isPasswordConfirmVisible ? 'visibility' : 'visibility_off'"
+          :name="
+            isPasswordConfirmationVisible ? 'visibility' : 'visibility_off'
+          "
           class="cursor-pointer"
-          @click="visibilityPasswordConfirm"
+          @click="visibilityPasswordConfirmation"
         />
       </template>
     </q-input>
@@ -77,7 +79,7 @@ import { ref } from 'vue'
 import authResetPasswordFactory from 'src/modules/auth/factories/auth-reset-password-factory'
 import {
   ruleEmail,
-  rulePasswordConfirm,
+  rulePasswordConfirmation,
   rulePasswordLength,
   ruleRequired,
 } from 'src/services/validation-service'
@@ -86,7 +88,7 @@ import { useLoaderService } from 'src/services/loader-service'
 import { useNotifyService } from 'src/services/notify-service'
 
 const isPasswordVisible = ref(false)
-const isPasswordConfirmVisible = ref(false)
+const isPasswordConfirmationVisible = ref(false)
 const resetPasswordForm = ref({ ...authResetPasswordFactory })
 const loaderService = useLoaderService()
 const notifyService = useNotifyService()
@@ -105,7 +107,7 @@ const resetPasswordHandler = async () => {
 const visibilityPassword = () => {
   isPasswordVisible.value = !isPasswordVisible.value
 }
-const visibilityPasswordConfirm = () => {
-  isPasswordConfirmVisible.value = !isPasswordConfirmVisible.value
+const visibilityPasswordConfirmation = () => {
+  isPasswordConfirmationVisible.value = !isPasswordConfirmationVisible.value
 }
 </script>
