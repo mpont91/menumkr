@@ -1,91 +1,97 @@
 <template>
-  <q-form
-    ref="registerForm"
-    class="q-gutter-md"
-    @submit="registerSubmitHandler"
-    @reset="registerResetHandler"
-  >
-    <q-input
-      v-model="registerFields.name"
-      :label="$t('field.name')"
-      name="name"
-      :rules="[ruleRequired]"
+  <q-card-section>
+    <div class="text-h6">{{ $t('auth.register.title') }}</div>
+  </q-card-section>
+  <q-separator />
+  <q-card-section>
+    <q-form
+      ref="registerForm"
+      class="q-gutter-md"
+      @submit="registerSubmitHandler"
+      @reset="registerResetHandler"
     >
-      <template #prepend>
-        <q-icon name="person" />
-      </template>
-    </q-input>
-    <q-input
-      v-model="registerFields.email"
-      :label="$t('field.email')"
-      name="email"
-      :rules="[ruleRequired, ruleEmail]"
-    >
-      <template #prepend>
-        <q-icon name="alternate_email" />
-      </template>
-    </q-input>
-    <q-input
-      v-model="registerFields.password"
-      :label="$t('field.password')"
-      :type="isPasswordVisible ? 'text' : 'password'"
-      name="password"
-      :rules="[ruleRequired, rulePasswordLength]"
-    >
-      <template #prepend>
-        <q-icon name="lock" />
-      </template>
-      <template #append>
-        <q-icon
-          :name="isPasswordVisible ? 'visibility' : 'visibility_off'"
-          class="cursor-pointer"
-          @click="visibilityPassword"
+      <q-input
+        v-model="registerFields.name"
+        :label="$t('field.name')"
+        name="name"
+        :rules="[ruleRequired]"
+      >
+        <template #prepend>
+          <q-icon name="person" />
+        </template>
+      </q-input>
+      <q-input
+        v-model="registerFields.email"
+        :label="$t('field.email')"
+        name="email"
+        :rules="[ruleRequired, ruleEmail]"
+      >
+        <template #prepend>
+          <q-icon name="alternate_email" />
+        </template>
+      </q-input>
+      <q-input
+        v-model="registerFields.password"
+        :label="$t('field.password')"
+        :type="isPasswordVisible ? 'text' : 'password'"
+        name="password"
+        :rules="[ruleRequired, rulePasswordLength]"
+      >
+        <template #prepend>
+          <q-icon name="lock" />
+        </template>
+        <template #append>
+          <q-icon
+            :name="isPasswordVisible ? 'visibility' : 'visibility_off'"
+            class="cursor-pointer"
+            @click="visibilityPassword"
+          />
+        </template>
+      </q-input>
+      <q-input
+        v-model="registerFields.passwordConfirmation"
+        :label="$t('field.password_confirm')"
+        :type="isPasswordConfirmationVisible ? 'text' : 'password'"
+        :rules="[
+          ruleRequired,
+          rulePasswordLength,
+          (value) => rulePasswordConfirmation(value, registerFields.password),
+        ]"
+        name="password-confirm"
+      >
+        <template #prepend>
+          <q-icon name="lock" />
+        </template>
+        <template #append>
+          <q-icon
+            :name="
+              isPasswordConfirmationVisible ? 'visibility' : 'visibility_off'
+            "
+            class="cursor-pointer"
+            @click="visibilityPasswordConfirmation"
+          />
+        </template>
+      </q-input>
+      <div>
+        <q-btn
+          square
+          size="medium"
+          :label="$t('auth.register.action')"
+          type="submit"
+          color="primary"
+          icon-right="person_add"
+          class="full-width"
         />
-      </template>
-    </q-input>
-    <q-input
-      v-model="registerFields.passwordConfirmation"
-      :label="$t('field.password_confirm')"
-      :type="isPasswordConfirmationVisible ? 'text' : 'password'"
-      :rules="[
-        ruleRequired,
-        rulePasswordLength,
-        (value) => rulePasswordConfirmation(value, registerFields.password),
-      ]"
-      name="password-confirm"
-    >
-      <template #prepend>
-        <q-icon name="lock" />
-      </template>
-      <template #append>
-        <q-icon
-          :name="
-            isPasswordConfirmationVisible ? 'visibility' : 'visibility_off'
-          "
-          class="cursor-pointer"
-          @click="visibilityPasswordConfirmation"
-        />
-      </template>
-    </q-input>
-    <div>
-      <q-btn
-        square
-        size="medium"
-        :label="$t('auth.register.action')"
-        type="submit"
-        color="primary"
-        icon-right="person_add"
-        class="full-width"
-      />
-    </div>
-  </q-form>
-  <q-btn
-    icon="login"
-    :label="$t('auth.register.login')"
-    :to="{ name: 'auth_login' }"
-    flat
-    class="full-width q-mt-lg"
-  />
+      </div>
+    </q-form>
+    <q-btn
+      icon="login"
+      :label="$t('auth.register.login')"
+      :to="{ name: 'auth_login' }"
+      flat
+      class="full-width q-mt-lg"
+    />
+  </q-card-section>
 </template>
 
 <script setup>

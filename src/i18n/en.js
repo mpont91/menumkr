@@ -31,23 +31,27 @@ export default {
   },
   auth: {
     login: {
+      title: 'Login to your account',
       action: 'Login',
-      forgot_password: 'Forgot your password?',
+      forgot_password: 'Have you forgotten your password?',
       success_message: 'You have been logged in successfully.',
       success_caption: 'You will be redirected automatically.',
     },
     forgot_password: {
+      title: 'Have you forgotten your password?',
       action: 'Submit',
       login: 'Login into your account',
       success_message: 'We have sent you an email with the instructions for resetting the password.',
     },
     reset_password: {
+      title: 'Resetting your password',
       action: 'Reset password',
       login: 'Do you already have an account?',
       success_message: 'You have reset the password successfully.',
       success_caption: 'You will be redirected to the login page automatically.',
     },
     register: {
+      title: 'Creating a new account',
       action: 'Register',
       login: 'Do you already have an account?',
       success_message: 'You have been registered successfully.',

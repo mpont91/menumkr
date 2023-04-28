@@ -1,57 +1,63 @@
 <template>
-  <q-form
-    ref="loginForm"
-    class="q-gutter-md"
-    @submit="loginSubmitHandler"
-    @reset="loginResetHandler"
-  >
-    <q-input
-      v-model="loginFields.email"
-      :label="$t('field.email')"
-      name="email"
-      :rules="[ruleRequired, ruleEmail]"
+  <q-card-section>
+    <div class="text-h6">{{ $t('auth.login.title') }}</div>
+  </q-card-section>
+  <q-separator />
+  <q-card-section>
+    <q-form
+      ref="loginForm"
+      class="q-gutter-md"
+      @submit="loginSubmitHandler"
+      @reset="loginResetHandler"
     >
-      <template #prepend>
-        <q-icon name="person" />
-      </template>
-    </q-input>
-    <q-input
-      v-model="loginFields.password"
-      :label="$t('field.password')"
-      :type="isPasswordVisible ? 'text' : 'password'"
-      name="password"
-      :rules="[ruleRequired]"
-    >
-      <template #prepend>
-        <q-icon name="lock" />
-      </template>
-      <template #append>
-        <q-icon
-          :name="isPasswordVisible ? 'visibility' : 'visibility_off'"
-          class="cursor-pointer"
-          @click="visibilityPassword"
+      <q-input
+        v-model="loginFields.email"
+        :label="$t('field.email')"
+        name="email"
+        :rules="[ruleRequired, ruleEmail]"
+      >
+        <template #prepend>
+          <q-icon name="person" />
+        </template>
+      </q-input>
+      <q-input
+        v-model="loginFields.password"
+        :label="$t('field.password')"
+        :type="isPasswordVisible ? 'text' : 'password'"
+        name="password"
+        :rules="[ruleRequired]"
+      >
+        <template #prepend>
+          <q-icon name="lock" />
+        </template>
+        <template #append>
+          <q-icon
+            :name="isPasswordVisible ? 'visibility' : 'visibility_off'"
+            class="cursor-pointer"
+            @click="visibilityPassword"
+          />
+        </template>
+      </q-input>
+      <div>
+        <q-btn
+          square
+          size="medium"
+          :label="$t('auth.login.action')"
+          type="submit"
+          color="primary"
+          icon-right="login"
+          class="full-width"
         />
-      </template>
-    </q-input>
-    <div>
-      <q-btn
-        square
-        size="medium"
-        :label="$t('auth.login.action')"
-        type="submit"
-        color="primary"
-        icon-right="login"
-        class="full-width"
-      />
-    </div>
-  </q-form>
-  <q-btn
-    icon="lock_reset"
-    :label="$t('auth.login.forgot_password')"
-    :to="{ name: 'auth_forgot_password' }"
-    flat
-    class="full-width q-mt-lg"
-  />
+      </div>
+    </q-form>
+    <q-btn
+      icon="lock_reset"
+      :label="$t('auth.login.forgot_password')"
+      :to="{ name: 'auth_forgot_password' }"
+      flat
+      class="full-width q-mt-lg"
+    />
+  </q-card-section>
 </template>
 
 <script setup>
