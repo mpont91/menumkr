@@ -57,5 +57,9 @@ export default {
       success_message: 'Te has registrado correctamente.',
       success_caption: 'Se te iniciará la sesión y serás redirigido automaticamente.',
     },
+    logout: {
+      success_message: 'Has cerrado correctamente la sesión.',
+      success_caption: 'Serás redirigido automáticamente.',
+    },
   },
 }

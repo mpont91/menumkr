@@ -57,5 +57,9 @@ export default {
       success_message: 'You have been registered successfully.',
       success_caption: 'You will logged in and redirected automatically.',
     },
+    logout: {
+      success_message: 'You have been logged out successfully.',
+      success_caption: 'You will be redirected automatically.',
+    },
   },
 }
