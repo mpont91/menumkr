@@ -1,8 +1,6 @@
 import { Notify } from 'quasar'
 import { useI18n } from 'boot/i18n'
 
-const { t } = useI18n().global
-
 export const useNotifyService = () => {
   const notify = ({
     type,
@@ -40,20 +38,20 @@ export const useNotifyService = () => {
   const success = ({ message, caption } = { message: null, caption: null }) => {
     notify({
       type: 'positive',
-      message: message ?? t('api.success'),
+      message: message ?? useI18n().global.t('api.success'),
       caption: caption,
     })
   }
 
   const getErrorMessages = (error) => {
     const response = {
-      message: t('api.error_message'),
-      caption: t('api.error_caption'),
+      message: useI18n().global.t('api.error_message'),
+      caption: useI18n().global.t('api.error_caption'),
     }
 
     switch (error?.response?.status) {
       case 422:
-        response.message = t('api.validation')
+        response.message = useI18n().global.t('api.validation')
         response.caption = error?.response?.data?.message
         break
       case 500:
