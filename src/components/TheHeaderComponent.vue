@@ -3,7 +3,13 @@
     <q-toolbar style="height: 200px">
       <q-img :src="logo" height="150px" width="150px" class="q-ml-lg" />
       <q-space></q-space>
-      <q-btn-dropdown v-if="userStore.isLoggedIn" square flat icon="person">
+      <q-btn-dropdown
+        v-if="userStore.isLoggedIn"
+        :label="userStore.user.name"
+        square
+        flat
+        icon="person"
+      >
         <q-list style="min-width: 100px">
           <q-item v-close-popup clickable>
             <q-item-section>
