@@ -18,6 +18,7 @@ export default {
     auth_login: 'Login',
     auth_register: 'Register',
     auth_logout: 'Logout',
+    dashboard: 'Dashboard',
   },
   validation: {
     email: 'The {attribute} must be a valid email address.',

@@ -18,6 +18,7 @@ export default {
     auth_login: 'Iniciar sesión',
     auth_register: 'Registrarse',
     auth_logout: 'Cerrar sesión',
+    dashboard: 'Panel',
   },
   validation: {
     email: 'El campo {attribute} debe ser un correo electrónico válido.',

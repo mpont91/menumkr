@@ -1,7 +1,15 @@
 <template>
   <q-header reveal elevated style="height: 200px">
     <q-toolbar style="height: 200px">
-      <q-img :src="logo" height="150px" width="150px" class="q-ml-lg" />
+      <router-link v-slot="{ navigate }" :to="{ name: 'guest' }" custom>
+        <q-img
+          :src="logo"
+          height="150px"
+          width="150px"
+          class="q-ml-lg cursor-pointer"
+          @click="navigate"
+        />
+      </router-link>
       <q-space></q-space>
       <q-btn-dropdown
         v-if="userStore.isLoggedIn"
@@ -11,6 +19,17 @@
         icon="person"
       >
         <q-list style="min-width: 100px">
+          <q-item v-close-popup clickable>
+            <q-item-section>
+              <router-link
+                v-slot="{ navigate }"
+                :to="{ name: 'dashboard' }"
+                custom
+              >
+                <span @click="navigate">{{ $t('menu.dashboard') }}</span>
+              </router-link>
+            </q-item-section>
+          </q-item>
           <q-item v-close-popup clickable>
             <q-item-section>
               <span @click="logoutHandler">{{ $t('menu.auth_logout') }}</span>
