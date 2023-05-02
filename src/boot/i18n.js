@@ -4,7 +4,7 @@ import messages from 'src/i18n'
 import { useLocaleStore } from 'stores/locale-store'
 import { Quasar } from 'quasar'
 
-const i18n = () =>
+const useI18n = () =>
   createI18n({
     locale: detectLocale(),
     fallbackLocale: 'en',
@@ -25,7 +25,7 @@ const detectLocale = () => {
 }
 
 export default boot(({ app }) => {
-  app.use(i18n())
+  app.use(useI18n())
 })
 
-export const useI18n = () => i18n()
+export { useI18n }
