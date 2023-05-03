@@ -21,8 +21,8 @@ export default {
     dashboard: 'Dashboard',
   },
   validation: {
-    email: 'The {attribute} must be a valid email address.',
-    required: 'The {attribute} field is required.',
+    email: 'The field must be a valid email address.',
+    required: 'The field is required.',
     password_confirm: 'Passwords did not match.',
     password_length: 'Password length must be greater than {n} characters.',
   },

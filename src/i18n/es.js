@@ -21,8 +21,8 @@ export default {
     dashboard: 'Panel',
   },
   validation: {
-    email: 'El campo {attribute} debe ser un correo electrónico válido.',
-    required: 'El campo {attribute} es requerido.',
+    email: 'El campo debe ser un correo electrónico válido.',
+    required: 'El campo es requerido.',
     password_confirm: 'Las contraseñas no coinciden.',
     password_length: 'La contraseña debe contener más de {n} carácteres.',
   },
