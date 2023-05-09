@@ -11,8 +11,8 @@
     "format:check": "prettier --check \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "format:fix": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"See package.json => scripts for available tests.\" && exit 0",
-    "dev": "quasar dev",
-    "build": "quasar build",
+    "dev": "quasar dev -m ssr",
+    "build": "quasar build -m ssr",
     "test:unit": "vitest",
     "test:unit:ci": "vitest run"
   },
@@ -21,6 +21,7 @@
     "axios": "^1.4.0",
     "pinia": "^2.0.35",
     "quasar": "^2.6.0",
+    "serverless-http": "^3.2.0",
     "vue": "^3.0.0",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.0"

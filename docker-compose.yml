@@ -5,6 +5,7 @@ services:
     working_dir: /app
     entrypoint: /app/.docker/entrypoint-node.sh
     ports:
-      - '9000:9000'
+      - '9100:9100'
+      - '24678:24678'
     volumes:
       - ./:/app

@@ -14,7 +14,7 @@ const useI18n = () =>
   })
 
 const dtoBrowserLocale = (locale) => {
-  if (locale.startsWith('es')) return 'es'
+  if (locale && locale.startsWith('es')) return 'es'
   return 'en'
 }
 
