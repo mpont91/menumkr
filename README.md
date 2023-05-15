@@ -2,7 +2,7 @@
 
 ![alt text](src/assets/logo/twitter_header_photo_1.png 'Title')
 
-## Set up the project
+## 🛠 Set up the project
 
 Clone the project
 
@@ -21,3 +21,11 @@ Run the docker compose. Docker container will automatically install the dependen
 ```
 docker compose up
 ```
+
+## 💻 Built with
+
+- [Quasar Framework](https://quasar.dev/)
+
+## 🛡️ License
+
+This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
