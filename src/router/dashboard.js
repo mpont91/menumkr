@@ -13,5 +13,11 @@ export default {
       component: () =>
         import('src/modules/dashboard/pages/DashboardHomePage.vue'),
     },
+    {
+      path: 'menu/:menu',
+      name: 'dashboard_menu',
+      component: () =>
+        import('src/modules/dashboard/pages/DashboardMenuPage.vue'),
+    },
   ],
 }

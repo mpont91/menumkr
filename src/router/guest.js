@@ -10,7 +10,7 @@ export default {
       component: () => import('src/modules/guest/pages/GuestLandingPage.vue'),
     },
     {
-      path: '/menu',
+      path: '/menu/:menu',
       name: 'guest_menu',
       component: () => import('src/modules/guest/pages/GuestMenuPage.vue'),
     },
