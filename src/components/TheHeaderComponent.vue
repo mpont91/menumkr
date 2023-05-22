@@ -1,7 +1,7 @@
 <template>
   <q-header reveal elevated style="height: 200px">
     <q-toolbar style="height: 200px">
-      <router-link v-slot="{ navigate }" :to="{ name: 'guest' }" custom>
+      <router-link v-slot="{ navigate }" :to="{ name: 'landing' }" custom>
         <q-img
           :src="logo"
           height="150px"
@@ -121,7 +121,7 @@ const logoutHandler = async () => {
       caption: t('auth.logout.success_caption'),
     })
     await delayService.delay()
-    await router.push({ name: 'guest' })
+    await router.push({ name: 'landing' })
   } catch (error) {
     notifyService.error(error)
   } finally {

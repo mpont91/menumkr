@@ -1,9 +1,11 @@
-import Guest from 'src/router/guest'
+import Landing from 'src/router/landing'
+import Menu from 'src/router/Menu'
 import Auth from 'src/router/auth'
 import Dashboard from 'src/router/dashboard'
 
 const routes = [
-  Guest,
+  Landing,
+  Menu,
   Auth,
   Dashboard,
   {

@@ -5,7 +5,7 @@
         <q-card style="max-width: 400px" class="bg-grey-2 q-mx-auto">
           <the-language-selector-component label class="full-width" />
           <q-card-section>
-            <router-link :to="{ name: 'guest' }">
+            <router-link :to="{ name: 'landing' }">
               <q-img :src="logo" />
             </router-link>
           </q-card-section>
