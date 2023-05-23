@@ -5,7 +5,7 @@
       <h2>{{ heading.name }}</h2>
       <ul>
         <li v-for="dish in heading.dishes" :key="dish.id">
-          {{ `${dish.name} - ${dish.price} €` }}
+          {{ `${dish.name} - ${dish.price} ${menu.currency.symbol}` }}
         </li>
       </ul>
     </section>
