@@ -1,5 +1,5 @@
 import Landing from 'src/router/landing'
-import Menu from 'src/router/Menu'
+import Menu from 'src/router/menu'
 import Auth from 'src/router/auth'
 import Dashboard from 'src/router/dashboard'
 
