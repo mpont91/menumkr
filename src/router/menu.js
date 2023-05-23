@@ -1,6 +1,6 @@
 export default {
   path: '/menu/:menu',
-  component: () => import('layouts/TheLandingLayout.vue'),
+  component: () => import('layouts/TheMenuLayout.vue'),
   children: [
     {
       path: '',

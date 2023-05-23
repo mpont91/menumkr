@@ -1,14 +1,25 @@
 <template>
-  <q-page padding>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-      luctus tempor leo, luctus lacinia nisl dictum sed. Fusce imperdiet
-      interdum erat, eu sollicitudin tortor tristique quis. In hac habitasse
-      platea dictumst. Proin est diam, finibus vitae rutrum interdum, congue
-      quis diam. Ut lacinia porta ante ultricies iaculis. Phasellus convallis
-      placerat nisi in feugiat. Suspendisse eu nunc nec nisl aliquam malesuada
-      vitae a ex. Maecenas vel dui magna. Morbi fringilla sapien pharetra,
-      maximus turpis in, interdum nisi.
-    </p>
+  <q-page v-if="menu" padding>
+    <h1>{{ menu.name }}</h1>
+    <section v-for="heading in menu.headings" :key="heading.id">
+      <h2>{{ heading.name }}</h2>
+      <ul>
+        <li v-for="dish in heading.dishes" :key="dish.id">
+          {{ dish.name }}
+        </li>
+      </ul>
+    </section>
   </q-page>
 </template>
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useMenuGetApi } from 'src/api/menu-api'
+
+const menu = ref()
+const route = useRoute()
+
+onMounted(async () => {
+  menu.value = await useMenuGetApi(route.params.menu)
+})
+</script>
