@@ -29,7 +29,7 @@ api.interceptors.response.use(
       default:
         return Promise.reject(error)
     }
-  }
+  },
 )
 
 export default boot(({ app }) => {
