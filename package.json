@@ -34,7 +34,7 @@
     "@quasar/quasar-app-extension-testing": "^2.1.1",
     "@quasar/quasar-app-extension-testing-unit-vitest": "^0.1.0",
     "@vue/test-utils": "^2.4.1",
-    "autoprefixer": "^10.4.15",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-vue": "^9.16.1",
